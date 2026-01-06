@@ -107,8 +107,9 @@ CREATE TABLE abonament (
 CREATE TABLE utilizator(
 
   id_utilizator   NUMBER PRIMARY KEY,
-  name VARCHAR2(64) NOT NULL,
+  nume VARCHAR2(64) NOT NULL,
   prenume VARCHAR2(64) NOT NULL,
+  data_inregistrare DATE DEFAULT SYSDATE,
   email VARCHAR2(64) UNIQUE NOT NULL,
   parola VARCHAR2(128) UNIQUE,
   id_melodie_ascultata NUMBER,
@@ -134,7 +135,7 @@ CREATE TABLE playlist (
   nr_streamuri NUMBER,
 
   CONSTRAINT fk_creator FOREIGN KEY
-    (id_creator) REFERENCES utilizator(id_utilizator),
+    (id_creator) REFERENCES utilizator(id_utilizator)
 
 );
 
@@ -148,7 +149,7 @@ CREATE TABLE playlist_melodie (
     (id_melodie) REFERENCES melodie(id_melodie) ON DELETE CASCADE,
 
   CONSTRAINT fk_playlist FOREIGN KEY
-    (id_playlist) REFERENCES playlist(id_playlist) ON DELETE CASCADE,
+    (id_playlist) REFERENCES playlist(id_playlist) ON DELETE CASCADE
 
 );
 
@@ -182,6 +183,8 @@ CREATE TABLE melodie_downloadata_utilizator (
   id_melodie_downloadata_utilizator NUMBER PRIMARY KEY,
   id_melodie_downloadata NUMBER NOT NULL,
   id_utilizator NUMBER NOT NULL,
+  timp_de_ascultare_lunar NUMBER,
+  
 
   CONSTRAINT fk_melodie_downloadata FOREIGN KEY
     (id_melodie_downloadata) REFERENCES 

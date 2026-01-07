@@ -288,4 +288,10 @@ INSERT INTO melodie_downloadata_utilizator
 (id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
 VALUES (12, 7, 8, 2600);
 
+INSERT INTO utilizator (id_utilizator, nume, prenume, data_inregistrare) VALUES (1, 'Popescu', 'Alex', DATE '2026-01-06');
+INSERT INTO artist (id_artist, nume) VALUES (1, 'The Weeknd');
+INSERT INTO artist (id_artist, nume) VALUES (2, 'Daft Punk');
+INSERT INTO melodie (id_melodie, nume, durata) VALUES (10, 'Blinding Lights', 200);
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal) VALUES (10, 1, 1);
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar) VALUES (100, 10, 1, 1800);
 COMMIT;

@@ -125,22 +125,3 @@ BEGIN
   adaugare_melodie(99999, 1, 1);
 END;
 /
-  -- SELECT
-  --   u.id_utilizator,
-  --   p.id_playlist,
-  --   m.id_melodie,
-  --   MAX(CASE WHEN pm.id_melodie IS NOT NULL THEN 1 ELSE 0 END) AS exista_deja
-  -- FROM utilizator u
-  -- JOIN playlist p
-  --   ON p.id_creator = u.id_utilizator
-  -- JOIN melodie m
-  --   ON m.id_melodie = 1
-  -- JOIN melodie_artist ma
-  --   ON ma.id_melodie = m.id_melodie
-  --  AND ma.artist_principal = 1
-  -- LEFT JOIN playlist_melodie pm
-  --   ON pm.id_playlist = p.id_playlist
-  --  AND pm.id_melodie = m.id_melodie
-  -- WHERE u.id_utilizator = 1
-  --   AND p.id_playlist = 1
-  -- GROUP BY u.id_utilizator, p.id_playlist, m.id_melodie;

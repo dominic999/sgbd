@@ -48,12 +48,10 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE(v_nume_artist || ' | melodie_id' || v_nume_melodie || ' | ' || rec.timp_ascultare || ' sec');
   END LOOP;
 
-  -- dacă userul există dar nu are melodii downloadate
   IF v_artisti_posibili.COUNT = 0 THEN
     RETURN 'Nicio data';
   END IF;
 
-  -- găsește maximul
   v_key := v_artisti_posibili.FIRST;
   WHILE v_key IS NOT NULL LOOP
     IF v_artisti_posibili(v_key) > v_timp_maxim THEN
@@ -72,7 +70,10 @@ EXCEPTION
 
   WHEN TOO_MANY_ROWS THEN
     DBMS_OUTPUT.PUT_LINE('TOO_MANY_ROWS (melodie cu mai multi artisti principali)');
-    RETURN 'Date inconsistente';
+     RETURN 'Date inconsistente';
+  WHEN VALUE_ERROR THEN
+    DBMS_OUTPUT.PUT_LINE('VALUE_ERROR: problema de conversie / lungime variabile');
+    RETURN 'Date gresite'
 END;
 /
 SET SERVEROUTPUT ON;
@@ -101,9 +102,3 @@ BEGIN
 END;
 /
 
-SELECT m.nume, ma.artist_principal, a.nume
-FROM melodie_downloadata_utilizator md
-LEFT JOIN melodie m ON md.id_melodie_downloadata = m.id_melodie
-LEFT JOIN melodie_artist ma ON m.id_melodie = ma.id_melodie
-LEFT JOIN artist a ON ma.id_artist = a.id_artist
-WHERE md.id_utilizator = 1;

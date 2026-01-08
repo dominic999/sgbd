@@ -16,6 +16,8 @@ CREATE OR REPLACE PROCEDURE adaugare_melodie(
   v_status_abonament VARCHAR2(32);
   v_exista_deja NUMBER;
   v_apartine_utilizatorului NUMBER;
+  v_nume_melodie VARCHAR2(32);
+  v_nume_playlist VARCHAR2(32);
 
 BEGIN
   SELECT
@@ -46,10 +48,14 @@ BEGIN
     RAISE e_melodie_deja_in_playlist;
   END IF;
 
+  SELECT nume INTO v_nume_melodie FROM melodie WHERE id_melodie = p_id_melodie;
+  SELECT denumire INTO v_nume_playlist FROM playlist WHERE id_playlist = p_id_playlist;
+
   INSERT INTO playlist_melodie(id_playlist, id_melodie)
   VALUES (p_id_playlist, p_id_melodie);
 
-  DBMS_OUTPUT.PUT_LINE('OK: melodia a fost adaugata in playlist.');
+  DBMS_OUTPUT.PUT_LINE('OK: melodia ' ||  v_nume_melodie 
+    || ' a fost adaugata in playlist ul ' || v_nume_playlist);
 
 
   EXCEPTION
@@ -69,18 +75,34 @@ END;
 
 SET SERVEROUTPUT ON;
 
+SELECT p.denumire, m.nume
+FROM playlist_melodie pm
+JOIN playlist p ON p.id_playlist = pm.id_playlist
+JOIN melodie  m ON m.id_melodie  = pm.id_melodie
+WHERE p.denumire = 'Morning Boost'
+ORDER BY m.nume;
+
 DECLARE
   v_uid NUMBER;
   v_pid NUMBER;
   v_mid NUMBER;
 BEGIN
+
   SELECT id_utilizator INTO v_uid FROM utilizator WHERE email = 'alex.popescu@demo.ro';
   SELECT id_playlist   INTO v_pid FROM playlist   WHERE denumire = 'Morning Boost';
   SELECT id_melodie    INTO v_mid FROM melodie    WHERE nume = 'Blinding Lights';
 
   adaugare_melodie(v_uid, v_pid, v_mid);
+
 END;
 /
+
+SELECT p.denumire, m.nume
+FROM playlist_melodie pm
+JOIN playlist p ON p.id_playlist = pm.id_playlist
+JOIN melodie  m ON m.id_melodie  = pm.id_melodie
+WHERE p.denumire = 'Morning Boost'
+ORDER BY m.nume;
 
 DECLARE
   v_uid NUMBER;
@@ -125,3 +147,15 @@ BEGIN
   adaugare_melodie(99999, 1, 1);
 END;
 /
+
+DELETE FROM playlist_melodie
+WHERE id_playlist = (
+  SELECT id_playlist
+  FROM playlist
+  WHERE denumire = 'Morning Boost'
+)
+AND id_melodie = (
+  SELECT id_melodie
+  FROM melodie
+  WHERE nume = 'Blinding Lights'
+);

@@ -47,7 +47,6 @@ BEGIN
   ) LOOP 
 
     i := i+1;
-    DBMS_OUTPUT.PUT_LINE(rec.nume_melodie || ' ' || rec.durata_melodie || ' ' || rec.timp);
 
     v_nume.EXTEND;
     v_nume(i) := rec.nume_melodie;

@@ -73,7 +73,7 @@ EXCEPTION
      RETURN 'Date inconsistente';
   WHEN VALUE_ERROR THEN
     DBMS_OUTPUT.PUT_LINE('VALUE_ERROR: problema de conversie / lungime variabile');
-    RETURN 'Date gresite'
+    RETURN 'Date gresite';
 END;
 /
 SET SERVEROUTPUT ON;

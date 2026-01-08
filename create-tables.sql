@@ -96,7 +96,7 @@ CREATE TABLE utilizator (
   email VARCHAR2(64) UNIQUE NOT NULL,
   parola VARCHAR2(128) UNIQUE,
   id_melodie_ascultata NUMBER,
-  id_abonament NUMBER,
+  id_abonament NUMBER NOT NULL,
   CONSTRAINT pk_utilizator PRIMARY KEY (id_utilizator),
   CONSTRAINT fk_utilizator_melodie_ascultata FOREIGN KEY (id_melodie_ascultata)
     REFERENCES melodie(id_melodie),
@@ -106,7 +106,7 @@ CREATE TABLE utilizator (
 
 CREATE TABLE playlist (
   id_playlist NUMBER GENERATED ALWAYS AS IDENTITY,
-  id_creator NUMBER,
+  id_creator NUMBER NOT NULL,
   denumire VARCHAR2(32) NOT NULL,
   nr_melodii NUMBER,
   durata NUMBER,
@@ -159,3 +159,5 @@ CREATE TABLE melodie_downloadata_utilizator (
   CONSTRAINT fk_utilizator_melodie FOREIGN KEY (id_utilizator)
     REFERENCES utilizator(id_utilizator)
 );
+
+

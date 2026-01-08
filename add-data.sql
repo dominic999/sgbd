@@ -1,297 +1,421 @@
 
 ALTER SESSION SET CURRENT_SCHEMA = sgbd;
 
--- =========================
--- 1) TABELE DE BAZA (8 randuri fiecare)
--- =========================
+INSERT INTO artist (nume, nr_streamuri) VALUES ('Andrei Nova', 1200000);
+INSERT INTO artist (nume, nr_streamuri) VALUES ('Mara Vibes', 890000);
+INSERT INTO artist (nume, nr_streamuri) VALUES ('Kira Pulse', 450000);
+INSERT INTO artist (nume, nr_streamuri) VALUES ('Radu Echo', 2100000);
+INSERT INTO artist (nume, nr_streamuri) VALUES ('Luna Grey', 670000);
+INSERT INTO artist (nume, nr_streamuri) VALUES ('Vlad Tempo', 980000);
+INSERT INTO artist (nume, nr_streamuri) VALUES ('Daria Bloom', 530000);
+INSERT INTO artist (nume, nr_streamuri) VALUES ('Sorin Drift', 1500000);
+INSERT INTO artist (nume, nr_streamuri) VALUES ('The Weeknd', NULL);
+INSERT INTO artist (nume, nr_streamuri) VALUES ('Daft Punk', NULL);
 
--- ARTIST (8)
-INSERT INTO artist (id_artist, nume, nr_streamuri) VALUES (1, 'Andrei Nova', 1200000);
-INSERT INTO artist (id_artist, nume, nr_streamuri) VALUES (2, 'Mara Vibes', 890000);
-INSERT INTO artist (id_artist, nume, nr_streamuri) VALUES (3, 'Kira Pulse', 450000);
-INSERT INTO artist (id_artist, nume, nr_streamuri) VALUES (4, 'Radu Echo', 2100000);
-INSERT INTO artist (id_artist, nume, nr_streamuri) VALUES (5, 'Luna Grey', 670000);
-INSERT INTO artist (id_artist, nume, nr_streamuri) VALUES (6, 'Vlad Tempo', 980000);
-INSERT INTO artist (id_artist, nume, nr_streamuri) VALUES (7, 'Daria Bloom', 530000);
-INSERT INTO artist (id_artist, nume, nr_streamuri) VALUES (8, 'Sorin Drift', 1500000);
+INSERT INTO album (nume, nr_streamuri, nr_melodii, imagine, durata) VALUES ('Neon Nights', 3200000, 8, 'neon_nights.jpg', 2480);
+INSERT INTO album (nume, nr_streamuri, nr_melodii, imagine, durata) VALUES ('Midnight Drive', 2100000, 8, 'midnight_drive.png', 2310);
+INSERT INTO album (nume, nr_streamuri, nr_melodii, imagine, durata) VALUES ('Ocean Lines', 1450000, 8, 'ocean_lines.webp', 2405);
+INSERT INTO album (nume, nr_streamuri, nr_melodii, imagine, durata) VALUES ('City Lights', 4100000, 8, 'city_lights.jpg', 2550);
+INSERT INTO album (nume, nr_streamuri, nr_melodii, imagine, durata) VALUES ('Dark Bloom', 1750000, 8, 'dark_bloom.jpg', 2260);
+INSERT INTO album (nume, nr_streamuri, nr_melodii, imagine, durata) VALUES ('Pulse Theory', 2950000, 8, 'pulse_theory.png', 2420);
+INSERT INTO album (nume, nr_streamuri, nr_melodii, imagine, durata) VALUES ('Golden Hour', 3600000, 8, 'golden_hour.jpg', 2495);
+INSERT INTO album (nume, nr_streamuri, nr_melodii, imagine, durata) VALUES ('Afterglow', 1900000, 8, 'afterglow.webp', 2355);
 
--- ALBUM (8)
-INSERT INTO album (id_album, nume, nr_streamuri, nr_melodii, imagine, durata)
-VALUES (1, 'Neon Nights', 3200000, 8, 'neon_nights.jpg', 2480);
+INSERT INTO gen (denumire) VALUES ('pop');
+INSERT INTO gen (denumire) VALUES ('hip-hop');
+INSERT INTO gen (denumire) VALUES ('rock');
+INSERT INTO gen (denumire) VALUES ('electronic');
+INSERT INTO gen (denumire) VALUES ('jazz');
+INSERT INTO gen (denumire) VALUES ('indie');
+INSERT INTO gen (denumire) VALUES ('lofi');
+INSERT INTO gen (denumire) VALUES ('classical');
 
-INSERT INTO album (id_album, nume, nr_streamuri, nr_melodii, imagine, durata)
-VALUES (2, 'Midnight Drive', 2100000, 8, 'midnight_drive.png', 2310);
+INSERT INTO feeling (denumire) VALUES ('happy');
+INSERT INTO feeling (denumire) VALUES ('sad');
+INSERT INTO feeling (denumire) VALUES ('motivated');
+INSERT INTO feeling (denumire) VALUES ('chill');
+INSERT INTO feeling (denumire) VALUES ('romantic');
+INSERT INTO feeling (denumire) VALUES ('energetic');
+INSERT INTO feeling (denumire) VALUES ('focused');
+INSERT INTO feeling (denumire) VALUES ('nostalgic');
 
-INSERT INTO album (id_album, nume, nr_streamuri, nr_melodii, imagine, durata)
-VALUES (3, 'Ocean Lines', 1450000, 8, 'ocean_lines.webp', 2405);
+INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-12-01', DATE '2026-01-01', 'activ');
+INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-11-15', DATE '2025-12-15', 'neplatit');
+INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-10-10', DATE '2025-11-10', 'suspendat');
+INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-12-20', DATE '2026-01-20', 'activ');
+INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-09-05', DATE '2025-10-05', 'neplatit');
+INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-12-25', DATE '2026-01-25', 'activ');
+INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-08-01', DATE '2025-09-01', 'suspendat');
+INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-12-30', DATE '2026-01-30', 'activ');
 
-INSERT INTO album (id_album, nume, nr_streamuri, nr_melodii, imagine, durata)
-VALUES (4, 'City Lights', 4100000, 8, 'city_lights.jpg', 2550);
+INSERT INTO melodie (id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
+VALUES ((SELECT id_album FROM album WHERE nume='Neon Nights'), 'Neon Heart', 12000, 320, 650000, 45000, 215);
 
-INSERT INTO album (id_album, nume, nr_streamuri, nr_melodii, imagine, durata)
-VALUES (5, 'Dark Bloom', 1750000, 8, 'dark_bloom.jpg', 2260);
+INSERT INTO melodie (id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
+VALUES ((SELECT id_album FROM album WHERE nume='Midnight Drive'), 'Highway Rain', 9800, 210, 540000, 38000, 198);
 
-INSERT INTO album (id_album, nume, nr_streamuri, nr_melodii, imagine, durata)
-VALUES (6, 'Pulse Theory', 2950000, 8, 'pulse_theory.png', 2420);
+INSERT INTO melodie (id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
+VALUES ((SELECT id_album FROM album WHERE nume='Ocean Lines'), 'Ocean Ink', 7600, 145, 410000, 29000, 242);
 
-INSERT INTO album (id_album, nume, nr_streamuri, nr_melodii, imagine, durata)
-VALUES (7, 'Golden Hour', 3600000, 8, 'golden_hour.jpg', 2495);
+INSERT INTO melodie (id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
+VALUES ((SELECT id_album FROM album WHERE nume='City Lights'), 'City Runner', 15000, 500, 820000, 61000, 205);
 
-INSERT INTO album (id_album, nume, nr_streamuri, nr_melodii, imagine, durata)
-VALUES (8, 'Afterglow', 1900000, 8, 'afterglow.webp', 2355);
+INSERT INTO melodie (id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
+VALUES ((SELECT id_album FROM album WHERE nume='Dark Bloom'), 'Dark Petals', 6400, 180, 360000, 24000, 233);
 
--- GEN (8)
-INSERT INTO gen (id_gen, denumire) VALUES (1, 'pop');
-INSERT INTO gen (id_gen, denumire) VALUES (2, 'hip-hop');
-INSERT INTO gen (id_gen, denumire) VALUES (3, 'rock');
-INSERT INTO gen (id_gen, denumire) VALUES (4, 'electronic');
-INSERT INTO gen (id_gen, denumire) VALUES (5, 'jazz');
-INSERT INTO gen (id_gen, denumire) VALUES (6, 'indie');
-INSERT INTO gen (id_gen, denumire) VALUES (7, 'lofi');
-INSERT INTO gen (id_gen, denumire) VALUES (8, 'classical');
+INSERT INTO melodie (id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
+VALUES ((SELECT id_album FROM album WHERE nume='Pulse Theory'), 'Pulse Loop', 13200, 260, 710000, 52000, 220);
 
--- FEELING (8)
-INSERT INTO feeling (id_feeling, denumire) VALUES (1, 'happy');
-INSERT INTO feeling (id_feeling, denumire) VALUES (2, 'sad');
-INSERT INTO feeling (id_feeling, denumire) VALUES (3, 'motivated');
-INSERT INTO feeling (id_feeling, denumire) VALUES (4, 'chill');
-INSERT INTO feeling (id_feeling, denumire) VALUES (5, 'romantic');
-INSERT INTO feeling (id_feeling, denumire) VALUES (6, 'energetic');
-INSERT INTO feeling (id_feeling, denumire) VALUES (7, 'focused');
-INSERT INTO feeling (id_feeling, denumire) VALUES (8, 'nostalgic');
+INSERT INTO melodie (id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
+VALUES ((SELECT id_album FROM album WHERE nume='Golden Hour'), 'Golden Sky', 16800, 190, 900000, 75000, 208);
 
--- ABONAMENT (8) (pun valori explicite, nu las pe DEFAULT)
-INSERT INTO abonament (id_abonament, data_incepere, data_innoire, status)
-VALUES (1, DATE '2025-12-01', DATE '2026-01-01', 'activ');
+INSERT INTO melodie (id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
+VALUES ((SELECT id_album FROM album WHERE nume='Afterglow'), 'Afterglow Whisper', 8800, 140, 480000, 33000, 236);
 
-INSERT INTO abonament (id_abonament, data_incepere, data_innoire, status)
-VALUES (2, DATE '2025-11-15', DATE '2025-12-15', 'neplatit');
+INSERT INTO melodie (id_album, nume, durata) VALUES (NULL, 'Blinding Lights', 200);
 
-INSERT INTO abonament (id_abonament, data_incepere, data_innoire, status)
-VALUES (3, DATE '2025-10-10', DATE '2025-11-10', 'suspendat');
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
+VALUES ('Popescu','Alex', DATE '2025-12-02', 'alex.popescu@demo.ro', 'parola_A1!',
+        (SELECT id_melodie FROM melodie WHERE nume='Neon Heart'),
+        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-12-01'));
 
-INSERT INTO abonament (id_abonament, data_incepere, data_innoire, status)
-VALUES (4, DATE '2025-12-20', DATE '2026-01-20', 'activ');
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
+VALUES ('Ionescu','Mara', DATE '2025-11-16', 'mara.ionescu@demo.ro', 'parola_B2!',
+        (SELECT id_melodie FROM melodie WHERE nume='Highway Rain'),
+        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-11-15'));
 
-INSERT INTO abonament (id_abonament, data_incepere, data_innoire, status)
-VALUES (5, DATE '2025-09-05', DATE '2025-10-05', 'neplatit');
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
+VALUES ('Stan','Radu', DATE '2025-10-11', 'radu.stan@demo.ro', 'parola_C3!',
+        (SELECT id_melodie FROM melodie WHERE nume='Ocean Ink'),
+        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-10-10'));
 
-INSERT INTO abonament (id_abonament, data_incepere, data_innoire, status)
-VALUES (6, DATE '2025-12-25', DATE '2026-01-25', 'activ');
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
+VALUES ('Marin','Daria', DATE '2025-12-21', 'daria.marin@demo.ro', 'parola_D4!',
+        (SELECT id_melodie FROM melodie WHERE nume='City Runner'),
+        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-12-20'));
 
-INSERT INTO abonament (id_abonament, data_incepere, data_innoire, status)
-VALUES (7, DATE '2025-08-01', DATE '2025-09-01', 'suspendat');
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
+VALUES ('Georgescu','Vlad', DATE '2025-09-06', 'vlad.georgescu@demo.ro', 'parola_E5!',
+        (SELECT id_melodie FROM melodie WHERE nume='Dark Petals'),
+        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-09-05'));
 
-INSERT INTO abonament (id_abonament, data_incepere, data_innoire, status)
-VALUES (8, DATE '2025-12-30', DATE '2026-01-30', 'activ');
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
+VALUES ('Dumitru','Kira', DATE '2025-12-26', 'kira.dumitru@demo.ro', 'parola_F6!',
+        (SELECT id_melodie FROM melodie WHERE nume='Pulse Loop'),
+        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-12-25'));
 
--- MELODIE (8) (neaparat dupa ALBUM)
-INSERT INTO melodie (id_melodie, id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
-VALUES (1, 1, 'Neon Heart', 12000, 320, 650000, 45000, 215);
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
+VALUES ('Matei','Sorin', DATE '2025-08-02', 'sorin.matei@demo.ro', 'parola_G7!',
+        (SELECT id_melodie FROM melodie WHERE nume='Golden Sky'),
+        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-08-01'));
 
-INSERT INTO melodie (id_melodie, id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
-VALUES (2, 2, 'Highway Rain', 9800, 210, 540000, 38000, 198);
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
+VALUES ('Enache','Luna', DATE '2025-12-31', 'luna.enache@demo.ro', 'parola_H8!',
+        (SELECT id_melodie FROM melodie WHERE nume='Afterglow Whisper'),
+        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-12-30'));
 
-INSERT INTO melodie (id_melodie, id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
-VALUES (3, 3, 'Ocean Ink', 7600, 145, 410000, 29000, 242);
+INSERT INTO playlist (id_creator, denumire, nr_melodii, durata, nr_streamuri)
+VALUES ((SELECT id_utilizator FROM utilizator WHERE email='alex.popescu@demo.ro'), 'Morning Boost', 12, 2600, 180000);
 
-INSERT INTO melodie (id_melodie, id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
-VALUES (4, 4, 'City Runner', 15000, 500, 820000, 61000, 205);
+INSERT INTO playlist (id_creator, denumire, nr_melodii, durata, nr_streamuri)
+VALUES ((SELECT id_utilizator FROM utilizator WHERE email='mara.ionescu@demo.ro'), 'Late Night', 10, 2200, 145000);
 
-INSERT INTO melodie (id_melodie, id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
-VALUES (5, 5, 'Dark Petals', 6400, 180, 360000, 24000, 233);
+INSERT INTO playlist (id_creator, denumire, nr_melodii, durata, nr_streamuri)
+VALUES ((SELECT id_utilizator FROM utilizator WHERE email='radu.stan@demo.ro'), 'Study Mode', 14, 3000, 210000);
 
-INSERT INTO melodie (id_melodie, id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
-VALUES (6, 6, 'Pulse Loop', 13200, 260, 710000, 52000, 220);
+INSERT INTO playlist (id_creator, denumire, nr_melodii, durata, nr_streamuri)
+VALUES ((SELECT id_utilizator FROM utilizator WHERE email='daria.marin@demo.ro'), 'Gym Hits', 16, 3400, 260000);
 
-INSERT INTO melodie (id_melodie, id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
-VALUES (7, 7, 'Golden Sky', 16800, 190, 900000, 75000, 208);
+INSERT INTO playlist (id_creator, denumire, nr_melodii, durata, nr_streamuri)
+VALUES ((SELECT id_utilizator FROM utilizator WHERE email='vlad.georgescu@demo.ro'), 'Rainy Days', 9, 2000, 98000);
 
-INSERT INTO melodie (id_melodie, id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
-VALUES (8, 8, 'Afterglow Whisper', 8800, 140, 480000, 33000, 236);
+INSERT INTO playlist (id_creator, denumire, nr_melodii, durata, nr_streamuri)
+VALUES ((SELECT id_utilizator FROM utilizator WHERE email='kira.dumitru@demo.ro'), 'Road Trip', 13, 2900, 175000);
 
--- UTILIZATOR (8) (dupa MELODIE + ABONAMENT)
-INSERT INTO utilizator (id_utilizator, nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES (1, 'Popescu', 'Alex', DATE '2025-12-02', 'alex.popescu@demo.ro', 'parola_A1!', 1, 1);
+INSERT INTO playlist (id_creator, denumire, nr_melodii, durata, nr_streamuri)
+VALUES ((SELECT id_utilizator FROM utilizator WHERE email='sorin.matei@demo.ro'), 'Chill Vibes', 11, 2400, 132000);
 
-INSERT INTO utilizator (id_utilizator, nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES (2, 'Ionescu', 'Mara', DATE '2025-11-16', 'mara.ionescu@demo.ro', 'parola_B2!', 2, 2);
+INSERT INTO playlist (id_creator, denumire, nr_melodii, durata, nr_streamuri)
+VALUES ((SELECT id_utilizator FROM utilizator WHERE email='luna.enache@demo.ro'), 'Top 2025', 20, 4200, 310000);
 
-INSERT INTO utilizator (id_utilizator, nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES (3, 'Stan', 'Radu', DATE '2025-10-11', 'radu.stan@demo.ro', 'parola_C3!', 3, 3);
+INSERT INTO album_artist (id_artist, id_album, artist_principal)
+VALUES ((SELECT id_artist FROM artist WHERE nume='Andrei Nova'),
+        (SELECT id_album FROM album WHERE nume='Neon Nights'), 1);
 
-INSERT INTO utilizator (id_utilizator, nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES (4, 'Marin', 'Daria', DATE '2025-12-21', 'daria.marin@demo.ro', 'parola_D4!', 4, 4);
+INSERT INTO album_artist (id_artist, id_album, artist_principal)
+VALUES ((SELECT id_artist FROM artist WHERE nume='Mara Vibes'),
+        (SELECT id_album FROM album WHERE nume='Midnight Drive'), 1);
 
-INSERT INTO utilizator (id_utilizator, nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES (5, 'Georgescu', 'Vlad', DATE '2025-09-06', 'vlad.georgescu@demo.ro', 'parola_E5!', 5, 5);
+INSERT INTO album_artist (id_artist, id_album, artist_principal)
+VALUES ((SELECT id_artist FROM artist WHERE nume='Kira Pulse'),
+        (SELECT id_album FROM album WHERE nume='Ocean Lines'), 1);
 
-INSERT INTO utilizator (id_utilizator, nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES (6, 'Dumitru', 'Kira', DATE '2025-12-26', 'kira.dumitru@demo.ro', 'parola_F6!', 6, 6);
+INSERT INTO album_artist (id_artist, id_album, artist_principal)
+VALUES ((SELECT id_artist FROM artist WHERE nume='Radu Echo'),
+        (SELECT id_album FROM album WHERE nume='City Lights'), 1);
 
-INSERT INTO utilizator (id_utilizator, nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES (7, 'Matei', 'Sorin', DATE '2025-08-02', 'sorin.matei@demo.ro', 'parola_G7!', 7, 7);
+INSERT INTO album_artist (id_artist, id_album, artist_principal)
+VALUES ((SELECT id_artist FROM artist WHERE nume='Luna Grey'),
+        (SELECT id_album FROM album WHERE nume='Dark Bloom'), 1);
 
-INSERT INTO utilizator (id_utilizator, nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES (8, 'Enache', 'Luna', DATE '2025-12-31', 'luna.enache@demo.ro', 'parola_H8!', 8, 8);
+INSERT INTO album_artist (id_artist, id_album, artist_principal)
+VALUES ((SELECT id_artist FROM artist WHERE nume='Vlad Tempo'),
+        (SELECT id_album FROM album WHERE nume='Pulse Theory'), 1);
 
--- PLAYLIST (8) (dupa UTILIZATOR)
-INSERT INTO playlist (id_playlist, id_creator, denumire, nr_melodii, durata, nr_streamuri)
-VALUES (1, 1, 'Morning Boost', 12, 2600, 180000);
+INSERT INTO album_artist (id_artist, id_album, artist_principal)
+VALUES ((SELECT id_artist FROM artist WHERE nume='Daria Bloom'),
+        (SELECT id_album FROM album WHERE nume='Golden Hour'), 1);
 
-INSERT INTO playlist (id_playlist, id_creator, denumire, nr_melodii, durata, nr_streamuri)
-VALUES (2, 2, 'Late Night', 10, 2200, 145000);
+INSERT INTO album_artist (id_artist, id_album, artist_principal)
+VALUES ((SELECT id_artist FROM artist WHERE nume='Sorin Drift'),
+        (SELECT id_album FROM album WHERE nume='Afterglow'), 1);
 
-INSERT INTO playlist (id_playlist, id_creator, denumire, nr_melodii, durata, nr_streamuri)
-VALUES (3, 3, 'Study Mode', 14, 3000, 210000);
+INSERT INTO album_artist (id_artist, id_album, artist_principal)
+VALUES ((SELECT id_artist FROM artist WHERE nume='Mara Vibes'),
+        (SELECT id_album FROM album WHERE nume='Neon Nights'), 0);
 
-INSERT INTO playlist (id_playlist, id_creator, denumire, nr_melodii, durata, nr_streamuri)
-VALUES (4, 4, 'Gym Hits', 16, 3400, 260000);
+INSERT INTO album_artist (id_artist, id_album, artist_principal)
+VALUES ((SELECT id_artist FROM artist WHERE nume='Radu Echo'),
+        (SELECT id_album FROM album WHERE nume='Midnight Drive'), 0);
 
-INSERT INTO playlist (id_playlist, id_creator, denumire, nr_melodii, durata, nr_streamuri)
-VALUES (5, 5, 'Rainy Days', 9, 2000, 98000);
+INSERT INTO album_artist (id_artist, id_album, artist_principal)
+VALUES ((SELECT id_artist FROM artist WHERE nume='Vlad Tempo'),
+        (SELECT id_album FROM album WHERE nume='City Lights'), 0);
 
-INSERT INTO playlist (id_playlist, id_creator, denumire, nr_melodii, durata, nr_streamuri)
-VALUES (6, 6, 'Road Trip', 13, 2900, 175000);
+INSERT INTO album_artist (id_artist, id_album, artist_principal)
+VALUES ((SELECT id_artist FROM artist WHERE nume='Andrei Nova'),
+        (SELECT id_album FROM album WHERE nume='Golden Hour'), 0);
 
-INSERT INTO playlist (id_playlist, id_creator, denumire, nr_melodii, durata, nr_streamuri)
-VALUES (7, 7, 'Chill Vibes', 11, 2400, 132000);
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Neon Heart'),
+        (SELECT id_artist FROM artist WHERE nume='Andrei Nova'), 1);
 
-INSERT INTO playlist (id_playlist, id_creator, denumire, nr_melodii, durata, nr_streamuri)
-VALUES (8, 8, 'Top 2025', 20, 4200, 310000);
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Highway Rain'),
+        (SELECT id_artist FROM artist WHERE nume='Mara Vibes'), 1);
 
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Ocean Ink'),
+        (SELECT id_artist FROM artist WHERE nume='Kira Pulse'), 1);
 
--- =========================
--- 2) TABELE ASOCIATIVE (12 randuri fiecare)
--- =========================
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='City Runner'),
+        (SELECT id_artist FROM artist WHERE nume='Radu Echo'), 1);
 
--- ALBUM_ARTIST (12)
-INSERT INTO album_artist (id_album_artist, id_artist, id_album, artist_principal) VALUES (1, 1, 1, 1);
-INSERT INTO album_artist (id_album_artist, id_artist, id_album, artist_principal) VALUES (2, 2, 2, 1);
-INSERT INTO album_artist (id_album_artist, id_artist, id_album, artist_principal) VALUES (3, 3, 3, 1);
-INSERT INTO album_artist (id_album_artist, id_artist, id_album, artist_principal) VALUES (4, 4, 4, 1);
-INSERT INTO album_artist (id_album_artist, id_artist, id_album, artist_principal) VALUES (5, 5, 5, 1);
-INSERT INTO album_artist (id_album_artist, id_artist, id_album, artist_principal) VALUES (6, 6, 6, 1);
-INSERT INTO album_artist (id_album_artist, id_artist, id_album, artist_principal) VALUES (7, 7, 7, 1);
-INSERT INTO album_artist (id_album_artist, id_artist, id_album, artist_principal) VALUES (8, 8, 8, 1);
--- featuring/collab
-INSERT INTO album_artist (id_album_artist, id_artist, id_album, artist_principal) VALUES (9, 2, 1, 0);
-INSERT INTO album_artist (id_album_artist, id_artist, id_album, artist_principal) VALUES (10, 4, 2, 0);
-INSERT INTO album_artist (id_album_artist, id_artist, id_album, artist_principal) VALUES (11, 6, 4, 0);
-INSERT INTO album_artist (id_album_artist, id_artist, id_album, artist_principal) VALUES (12, 1, 7, 0);
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Dark Petals'),
+        (SELECT id_artist FROM artist WHERE nume='Luna Grey'), 1);
 
--- MELODIE_ARTIST (12)
-INSERT INTO melodie_artist (id_melodie_artist, id_melodie, id_artist, artist_principal) VALUES (1, 1, 1, 1);
-INSERT INTO melodie_artist (id_melodie_artist, id_melodie, id_artist, artist_principal) VALUES (2, 2, 2, 1);
-INSERT INTO melodie_artist (id_melodie_artist, id_melodie, id_artist, artist_principal) VALUES (3, 3, 3, 1);
-INSERT INTO melodie_artist (id_melodie_artist, id_melodie, id_artist, artist_principal) VALUES (4, 4, 4, 1);
-INSERT INTO melodie_artist (id_melodie_artist, id_melodie, id_artist, artist_principal) VALUES (5, 5, 5, 1);
-INSERT INTO melodie_artist (id_melodie_artist, id_melodie, id_artist, artist_principal) VALUES (6, 6, 6, 1);
-INSERT INTO melodie_artist (id_melodie_artist, id_melodie, id_artist, artist_principal) VALUES (7, 7, 7, 1);
-INSERT INTO melodie_artist (id_melodie_artist, id_melodie, id_artist, artist_principal) VALUES (8, 8, 8, 1);
--- featuring/collab
-INSERT INTO melodie_artist (id_melodie_artist, id_melodie, id_artist, artist_principal) VALUES (9, 1, 2, 0);
-INSERT INTO melodie_artist (id_melodie_artist, id_melodie, id_artist, artist_principal) VALUES (10, 4, 6, 0);
-INSERT INTO melodie_artist (id_melodie_artist, id_melodie, id_artist, artist_principal) VALUES (11, 7, 1, 0);
-INSERT INTO melodie_artist (id_melodie_artist, id_melodie, id_artist, artist_principal) VALUES (12, 2, 4, 0);
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Pulse Loop'),
+        (SELECT id_artist FROM artist WHERE nume='Vlad Tempo'), 1);
 
--- GEN_ALBUM (12)
-INSERT INTO gen_album (id_gen_album, id_gen, id_album) VALUES (1, 4, 1);
-INSERT INTO gen_album (id_gen_album, id_gen, id_album) VALUES (2, 4, 2);
-INSERT INTO gen_album (id_gen_album, id_gen, id_album) VALUES (3, 6, 3);
-INSERT INTO gen_album (id_gen_album, id_gen, id_album) VALUES (4, 2, 4);
-INSERT INTO gen_album (id_gen_album, id_gen, id_album) VALUES (5, 1, 5);
-INSERT INTO gen_album (id_gen_album, id_gen, id_album) VALUES (6, 4, 6);
-INSERT INTO gen_album (id_gen_album, id_gen, id_album) VALUES (7, 1, 7);
-INSERT INTO gen_album (id_gen_album, id_gen, id_album) VALUES (8, 6, 8);
--- extra (un album poate avea mai multe genuri)
-INSERT INTO gen_album (id_gen_album, id_gen, id_album) VALUES (9, 7, 1);
-INSERT INTO gen_album (id_gen_album, id_gen, id_album) VALUES (10, 7, 3);
-INSERT INTO gen_album (id_gen_album, id_gen, id_album) VALUES (11, 2, 2);
-INSERT INTO gen_album (id_gen_album, id_gen, id_album) VALUES (12, 4, 7);
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Golden Sky'),
+        (SELECT id_artist FROM artist WHERE nume='Daria Bloom'), 1);
 
--- PLAYLIST_MELODIE (12)
-INSERT INTO playlist_melodie (id_playlist_melodie, id_melodie, id_playlist) VALUES (1, 1, 1);
-INSERT INTO playlist_melodie (id_playlist_melodie, id_melodie, id_playlist) VALUES (2, 2, 1);
-INSERT INTO playlist_melodie (id_playlist_melodie, id_melodie, id_playlist) VALUES (3, 3, 2);
-INSERT INTO playlist_melodie (id_playlist_melodie, id_melodie, id_playlist) VALUES (4, 4, 2);
-INSERT INTO playlist_melodie (id_playlist_melodie, id_melodie, id_playlist) VALUES (5, 5, 3);
-INSERT INTO playlist_melodie (id_playlist_melodie, id_melodie, id_playlist) VALUES (6, 6, 3);
-INSERT INTO playlist_melodie (id_playlist_melodie, id_melodie, id_playlist) VALUES (7, 7, 4);
-INSERT INTO playlist_melodie (id_playlist_melodie, id_melodie, id_playlist) VALUES (8, 8, 4);
-INSERT INTO playlist_melodie (id_playlist_melodie, id_melodie, id_playlist) VALUES (9, 1, 5);
-INSERT INTO playlist_melodie (id_playlist_melodie, id_melodie, id_playlist) VALUES (10, 3, 6);
-INSERT INTO playlist_melodie (id_playlist_melodie, id_melodie, id_playlist) VALUES (11, 6, 7);
-INSERT INTO playlist_melodie (id_playlist_melodie, id_melodie, id_playlist) VALUES (12, 8, 8);
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Afterglow Whisper'),
+        (SELECT id_artist FROM artist WHERE nume='Sorin Drift'), 1);
 
--- FEELING_MELODIE (12)
-INSERT INTO feeling_melodie (id_feeling_melodie, id_feeling, id_melodie) VALUES (1, 6, 1);
-INSERT INTO feeling_melodie (id_feeling_melodie, id_feeling, id_melodie) VALUES (2, 4, 2);
-INSERT INTO feeling_melodie (id_feeling_melodie, id_feeling, id_melodie) VALUES (3, 8, 3);
-INSERT INTO feeling_melodie (id_feeling_melodie, id_feeling, id_melodie) VALUES (4, 3, 4);
-INSERT INTO feeling_melodie (id_feeling_melodie, id_feeling, id_melodie) VALUES (5, 2, 5);
-INSERT INTO feeling_melodie (id_feeling_melodie, id_feeling, id_melodie) VALUES (6, 6, 6);
-INSERT INTO feeling_melodie (id_feeling_melodie, id_feeling, id_melodie) VALUES (7, 1, 7);
-INSERT INTO feeling_melodie (id_feeling_melodie, id_feeling, id_melodie) VALUES (8, 5, 8);
--- extra
-INSERT INTO feeling_melodie (id_feeling_melodie, id_feeling, id_melodie) VALUES (9, 7, 3);
-INSERT INTO feeling_melodie (id_feeling_melodie, id_feeling, id_melodie) VALUES (10, 4, 6);
-INSERT INTO feeling_melodie (id_feeling_melodie, id_feeling, id_melodie) VALUES (11, 8, 2);
-INSERT INTO feeling_melodie (id_feeling_melodie, id_feeling, id_melodie) VALUES (12, 3, 7);
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Neon Heart'),
+        (SELECT id_artist FROM artist WHERE nume='Mara Vibes'), 0);
 
--- MELODIE_DOWNLOADATA_UTILIZATOR (12) (user–melodie cu timp_de_ascultare_lunar completat)
-INSERT INTO melodie_downloadata_utilizator
-(id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
-VALUES (1, 1, 1, 3600);
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='City Runner'),
+        (SELECT id_artist FROM artist WHERE nume='Vlad Tempo'), 0);
 
-INSERT INTO melodie_downloadata_utilizator
-(id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
-VALUES (2, 2, 1, 2100);
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Golden Sky'),
+        (SELECT id_artist FROM artist WHERE nume='Andrei Nova'), 0);
 
-INSERT INTO melodie_downloadata_utilizator
-(id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
-VALUES (3, 3, 2, 1800);
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Highway Rain'),
+        (SELECT id_artist FROM artist WHERE nume='Radu Echo'), 0);
 
-INSERT INTO melodie_downloadata_utilizator
-(id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
-VALUES (4, 4, 2, 2400);
+INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Blinding Lights'),
+        (SELECT id_artist FROM artist WHERE nume='The Weeknd'), 1);
 
-INSERT INTO melodie_downloadata_utilizator
-(id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
-VALUES (5, 5, 3, 900);
+INSERT INTO gen_album (id_gen, id_album) VALUES ((SELECT id_gen FROM gen WHERE denumire='electronic'), (SELECT id_album FROM album WHERE nume='Neon Nights'));
+INSERT INTO gen_album (id_gen, id_album) VALUES ((SELECT id_gen FROM gen WHERE denumire='electronic'), (SELECT id_album FROM album WHERE nume='Midnight Drive'));
+INSERT INTO gen_album (id_gen, id_album) VALUES ((SELECT id_gen FROM gen WHERE denumire='indie'),      (SELECT id_album FROM album WHERE nume='Ocean Lines'));
+INSERT INTO gen_album (id_gen, id_album) VALUES ((SELECT id_gen FROM gen WHERE denumire='hip-hop'),    (SELECT id_album FROM album WHERE nume='City Lights'));
+INSERT INTO gen_album (id_gen, id_album) VALUES ((SELECT id_gen FROM gen WHERE denumire='pop'),        (SELECT id_album FROM album WHERE nume='Dark Bloom'));
+INSERT INTO gen_album (id_gen, id_album) VALUES ((SELECT id_gen FROM gen WHERE denumire='electronic'), (SELECT id_album FROM album WHERE nume='Pulse Theory'));
+INSERT INTO gen_album (id_gen, id_album) VALUES ((SELECT id_gen FROM gen WHERE denumire='pop'),        (SELECT id_album FROM album WHERE nume='Golden Hour'));
+INSERT INTO gen_album (id_gen, id_album) VALUES ((SELECT id_gen FROM gen WHERE denumire='indie'),      (SELECT id_album FROM album WHERE nume='Afterglow'));
+INSERT INTO gen_album (id_gen, id_album) VALUES ((SELECT id_gen FROM gen WHERE denumire='lofi'),       (SELECT id_album FROM album WHERE nume='Neon Nights'));
+INSERT INTO gen_album (id_gen, id_album) VALUES ((SELECT id_gen FROM gen WHERE denumire='lofi'),       (SELECT id_album FROM album WHERE nume='Ocean Lines'));
+INSERT INTO gen_album (id_gen, id_album) VALUES ((SELECT id_gen FROM gen WHERE denumire='hip-hop'),    (SELECT id_album FROM album WHERE nume='Midnight Drive'));
+INSERT INTO gen_album (id_gen, id_album) VALUES ((SELECT id_gen FROM gen WHERE denumire='electronic'), (SELECT id_album FROM album WHERE nume='Golden Hour'));
 
-INSERT INTO melodie_downloadata_utilizator
-(id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
-VALUES (6, 6, 3, 2700);
+INSERT INTO playlist_melodie (id_melodie, id_playlist)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Neon Heart'),
+        (SELECT id_playlist FROM playlist WHERE denumire='Morning Boost'));
 
-INSERT INTO melodie_downloadata_utilizator
-(id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
-VALUES (7, 7, 4, 3200);
+INSERT INTO playlist_melodie (id_melodie, id_playlist)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Highway Rain'),
+        (SELECT id_playlist FROM playlist WHERE denumire='Morning Boost'));
 
-INSERT INTO melodie_downloadata_utilizator
-(id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
-VALUES (8, 8, 4, 1500);
+INSERT INTO playlist_melodie (id_melodie, id_playlist)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Ocean Ink'),
+        (SELECT id_playlist FROM playlist WHERE denumire='Late Night'));
 
-INSERT INTO melodie_downloadata_utilizator
-(id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
-VALUES (9, 1, 5, 600);
+INSERT INTO playlist_melodie (id_melodie, id_playlist)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='City Runner'),
+        (SELECT id_playlist FROM playlist WHERE denumire='Late Night'));
 
-INSERT INTO melodie_downloadata_utilizator
-(id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
-VALUES (10, 2, 6, 1100);
+INSERT INTO playlist_melodie (id_melodie, id_playlist)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Dark Petals'),
+        (SELECT id_playlist FROM playlist WHERE denumire='Study Mode'));
 
-INSERT INTO melodie_downloadata_utilizator
-(id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
-VALUES (11, 6, 7, 2000);
+INSERT INTO playlist_melodie (id_melodie, id_playlist)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Pulse Loop'),
+        (SELECT id_playlist FROM playlist WHERE denumire='Study Mode'));
 
-INSERT INTO melodie_downloadata_utilizator
-(id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
-VALUES (12, 7, 8, 2600);
+INSERT INTO playlist_melodie (id_melodie, id_playlist)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Golden Sky'),
+        (SELECT id_playlist FROM playlist WHERE denumire='Gym Hits'));
 
-INSERT INTO utilizator (id_utilizator, nume, prenume, data_inregistrare) VALUES (1, 'Popescu', 'Alex', DATE '2026-01-06');
-INSERT INTO artist (id_artist, nume) VALUES (1, 'The Weeknd');
-INSERT INTO artist (id_artist, nume) VALUES (2, 'Daft Punk');
-INSERT INTO melodie (id_melodie, nume, durata) VALUES (10, 'Blinding Lights', 200);
-INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal) VALUES (10, 1, 1);
-INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata_utilizator, id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar) VALUES (100, 10, 1, 1800);
+INSERT INTO playlist_melodie (id_melodie, id_playlist)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Afterglow Whisper'),
+        (SELECT id_playlist FROM playlist WHERE denumire='Gym Hits'));
+
+INSERT INTO playlist_melodie (id_melodie, id_playlist)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Neon Heart'),
+        (SELECT id_playlist FROM playlist WHERE denumire='Rainy Days'));
+
+INSERT INTO playlist_melodie (id_melodie, id_playlist)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Ocean Ink'),
+        (SELECT id_playlist FROM playlist WHERE denumire='Road Trip'));
+
+INSERT INTO playlist_melodie (id_melodie, id_playlist)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Pulse Loop'),
+        (SELECT id_playlist FROM playlist WHERE denumire='Chill Vibes'));
+
+INSERT INTO playlist_melodie (id_melodie, id_playlist)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Afterglow Whisper'),
+        (SELECT id_playlist FROM playlist WHERE denumire='Top 2025'));
+
+INSERT INTO feeling_melodie (id_feeling, id_melodie)
+VALUES ((SELECT id_feeling FROM feeling WHERE denumire='energetic'),
+        (SELECT id_melodie FROM melodie WHERE nume='Neon Heart'));
+
+INSERT INTO feeling_melodie (id_feeling, id_melodie)
+VALUES ((SELECT id_feeling FROM feeling WHERE denumire='chill'),
+        (SELECT id_melodie FROM melodie WHERE nume='Highway Rain'));
+
+INSERT INTO feeling_melodie (id_feeling, id_melodie)
+VALUES ((SELECT id_feeling FROM feeling WHERE denumire='nostalgic'),
+        (SELECT id_melodie FROM melodie WHERE nume='Ocean Ink'));
+
+INSERT INTO feeling_melodie (id_feeling, id_melodie)
+VALUES ((SELECT id_feeling FROM feeling WHERE denumire='motivated'),
+        (SELECT id_melodie FROM melodie WHERE nume='City Runner'));
+
+INSERT INTO feeling_melodie (id_feeling, id_melodie)
+VALUES ((SELECT id_feeling FROM feeling WHERE denumire='sad'),
+        (SELECT id_melodie FROM melodie WHERE nume='Dark Petals'));
+
+INSERT INTO feeling_melodie (id_feeling, id_melodie)
+VALUES ((SELECT id_feeling FROM feeling WHERE denumire='energetic'),
+        (SELECT id_melodie FROM melodie WHERE nume='Pulse Loop'));
+
+INSERT INTO feeling_melodie (id_feeling, id_melodie)
+VALUES ((SELECT id_feeling FROM feeling WHERE denumire='happy'),
+        (SELECT id_melodie FROM melodie WHERE nume='Golden Sky'));
+
+INSERT INTO feeling_melodie (id_feeling, id_melodie)
+VALUES ((SELECT id_feeling FROM feeling WHERE denumire='romantic'),
+        (SELECT id_melodie FROM melodie WHERE nume='Afterglow Whisper'));
+
+INSERT INTO feeling_melodie (id_feeling, id_melodie)
+VALUES ((SELECT id_feeling FROM feeling WHERE denumire='focused'),
+        (SELECT id_melodie FROM melodie WHERE nume='Ocean Ink'));
+
+INSERT INTO feeling_melodie (id_feeling, id_melodie)
+VALUES ((SELECT id_feeling FROM feeling WHERE denumire='chill'),
+        (SELECT id_melodie FROM melodie WHERE nume='Pulse Loop'));
+
+INSERT INTO feeling_melodie (id_feeling, id_melodie)
+VALUES ((SELECT id_feeling FROM feeling WHERE denumire='nostalgic'),
+        (SELECT id_melodie FROM melodie WHERE nume='Highway Rain'));
+
+INSERT INTO feeling_melodie (id_feeling, id_melodie)
+VALUES ((SELECT id_feeling FROM feeling WHERE denumire='motivated'),
+        (SELECT id_melodie FROM melodie WHERE nume='Golden Sky'));
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Neon Heart'),
+        (SELECT id_utilizator FROM utilizator WHERE email='alex.popescu@demo.ro'),
+        3600);
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Highway Rain'),
+        (SELECT id_utilizator FROM utilizator WHERE email='alex.popescu@demo.ro'),
+        2100);
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Ocean Ink'),
+        (SELECT id_utilizator FROM utilizator WHERE email='mara.ionescu@demo.ro'),
+        1800);
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='City Runner'),
+        (SELECT id_utilizator FROM utilizator WHERE email='mara.ionescu@demo.ro'),
+        2400);
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Dark Petals'),
+        (SELECT id_utilizator FROM utilizator WHERE email='radu.stan@demo.ro'),
+        900);
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Pulse Loop'),
+        (SELECT id_utilizator FROM utilizator WHERE email='radu.stan@demo.ro'),
+        2700);
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Golden Sky'),
+        (SELECT id_utilizator FROM utilizator WHERE email='daria.marin@demo.ro'),
+        3200);
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Afterglow Whisper'),
+        (SELECT id_utilizator FROM utilizator WHERE email='daria.marin@demo.ro'),
+        1500);
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Neon Heart'),
+        (SELECT id_utilizator FROM utilizator WHERE email='vlad.georgescu@demo.ro'),
+        600);
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Highway Rain'),
+        (SELECT id_utilizator FROM utilizator WHERE email='kira.dumitru@demo.ro'),
+        1100);
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Pulse Loop'),
+        (SELECT id_utilizator FROM utilizator WHERE email='sorin.matei@demo.ro'),
+        2000);
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Golden Sky'),
+        (SELECT id_utilizator FROM utilizator WHERE email='luna.enache@demo.ro'),
+        2600);
+
+INSERT INTO melodie_downloadata_utilizator (id_melodie_downloadata, id_utilizator, timp_de_ascultare_lunar)
+VALUES ((SELECT id_melodie FROM melodie WHERE nume='Blinding Lights'),
+        (SELECT id_utilizator FROM utilizator WHERE email='alex.popescu@demo.ro'),
+        1800);
+
+insert into melodie_artist (id_melodie, id_artist, artist_principal)
+values (
+  (select id_melodie from melodie where nume = 'Neon Heart'),
+  (select id_artist  from artist  where nume = 'Mara Vibes'),
+  1
+);
 COMMIT;

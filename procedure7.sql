@@ -1,6 +1,6 @@
 ALTER SESSION SET CURRENT_SCHEMA = sgbd;
 
-CREATE OR REPLACE PROCEDURE ceva (
+CREATE OR REPLACE PROCEDURE gaseste_playlisturile_utilizatorului (
   p_id_creator_playlist IN NUMBER
 ) IS
   
@@ -53,6 +53,6 @@ END;
 
 SET SERVEROUTPUT ON;
 BEGIN
-  ceva(1);
+  gaseste_playlisturile_utilizatorului(1);
 END;
 /

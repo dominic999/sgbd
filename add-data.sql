@@ -39,14 +39,14 @@ INSERT INTO feeling (denumire) VALUES ('energetic');
 INSERT INTO feeling (denumire) VALUES ('focused');
 INSERT INTO feeling (denumire) VALUES ('nostalgic');
 
-INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-12-01', DATE '2026-01-01', 'activ');
-INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-11-15', DATE '2025-12-15', 'neplatit');
-INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-10-10', DATE '2025-11-10', 'suspendat');
-INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-12-20', DATE '2026-01-20', 'activ');
-INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-09-05', DATE '2025-10-05', 'neplatit');
-INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-12-25', DATE '2026-01-25', 'activ');
-INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-08-01', DATE '2025-09-01', 'suspendat');
-INSERT INTO abonament (data_incepere, data_innoire, status) VALUES (DATE '2025-12-30', DATE '2026-01-30', 'activ');
+INSERT INTO abonament (data_start, status) VALUES (DATE '2025-12-01', 'activ');
+INSERT INTO abonament (data_start, data_stop, status) VALUES (DATE '2025-11-15', DATE '2025-12-15', 'inactiv');
+INSERT INTO abonament (data_start, data_stop, status) VALUES (DATE '2025-10-10', DATE '2025-11-10', 'inactiv');
+INSERT INTO abonament (data_start, status) VALUES (DATE '2025-12-20', 'activ');
+INSERT INTO abonament (data_start, data_stop, status) VALUES (DATE '2025-09-05', DATE '2025-10-05', 'inactiv');
+INSERT INTO abonament (data_start, status) VALUES (DATE '2025-12-25', 'activ');
+INSERT INTO abonament (data_start, data_stop, status) VALUES (DATE '2025-08-01', DATE '2025-09-01', 'inactiv');
+INSERT INTO abonament (data_start, status) VALUES (DATE '2025-12-30', 'activ');
 
 INSERT INTO melodie (id_album, nume, nr_likeuri, nr_dislikeuri, nr_streamuri, nr_downloaduri, durata)
 VALUES ((SELECT id_album FROM album WHERE nume='Neon Nights'), 'Neon Heart', 12000, 320, 650000, 45000, 215);
@@ -74,45 +74,29 @@ VALUES ((SELECT id_album FROM album WHERE nume='Afterglow'), 'Afterglow Whisper'
 
 INSERT INTO melodie (id_album, nume, durata) VALUES (NULL, 'Blinding Lights', 200);
 
-INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES ('Popescu','Alex', DATE '2025-12-02', 'alex.popescu@demo.ro', 'parola_A1!',
-        (SELECT id_melodie FROM melodie WHERE nume='Neon Heart'),
-        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-12-01'));
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola)
+VALUES ('Popescu','Alex', DATE '2025-12-02', 'alex.popescu@demo.ro', 'parola_A1!');
 
-INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES ('Ionescu','Mara', DATE '2025-11-16', 'mara.ionescu@demo.ro', 'parola_B2!',
-        (SELECT id_melodie FROM melodie WHERE nume='Highway Rain'),
-        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-11-15'));
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola)
+VALUES ('Ionescu','Mara', DATE '2025-11-16', 'mara.ionescu@demo.ro', 'parola_B2!');
 
-INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES ('Stan','Radu', DATE '2025-10-11', 'radu.stan@demo.ro', 'parola_C3!',
-        (SELECT id_melodie FROM melodie WHERE nume='Ocean Ink'),
-        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-10-10'));
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola)
+VALUES ('Stan','Radu', DATE '2025-10-11', 'radu.stan@demo.ro', 'parola_C3!');
 
-INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES ('Marin','Daria', DATE '2025-12-21', 'daria.marin@demo.ro', 'parola_D4!',
-        (SELECT id_melodie FROM melodie WHERE nume='City Runner'),
-        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-12-20'));
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola)
+VALUES ('Marin','Daria', DATE '2025-12-21', 'daria.marin@demo.ro', 'parola_D4!');
 
-INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES ('Georgescu','Vlad', DATE '2025-09-06', 'vlad.georgescu@demo.ro', 'parola_E5!',
-        (SELECT id_melodie FROM melodie WHERE nume='Dark Petals'),
-        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-09-05'));
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola)
+VALUES ('Georgescu','Vlad', DATE '2025-09-06', 'vlad.georgescu@demo.ro', 'parola_E5!');
 
-INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES ('Dumitru','Kira', DATE '2025-12-26', 'kira.dumitru@demo.ro', 'parola_F6!',
-        (SELECT id_melodie FROM melodie WHERE nume='Pulse Loop'),
-        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-12-25'));
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola)
+VALUES ('Dumitru','Kira', DATE '2025-12-26', 'kira.dumitru@demo.ro', 'parola_F6!');
 
-INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES ('Matei','Sorin', DATE '2025-08-02', 'sorin.matei@demo.ro', 'parola_G7!',
-        (SELECT id_melodie FROM melodie WHERE nume='Golden Sky'),
-        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-08-01'));
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola)
+VALUES ('Matei','Sorin', DATE '2025-08-02', 'sorin.matei@demo.ro', 'parola_G7!');
 
-INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola, id_melodie_ascultata, id_abonament)
-VALUES ('Enache','Luna', DATE '2025-12-31', 'luna.enache@demo.ro', 'parola_H8!',
-        (SELECT id_melodie FROM melodie WHERE nume='Afterglow Whisper'),
-        (SELECT id_abonament FROM abonament WHERE data_incepere=DATE '2025-12-30'));
+INSERT INTO utilizator (nume, prenume, data_inregistrare, email, parola)
+VALUES ('Enache','Luna', DATE '2025-12-31', 'luna.enache@demo.ro', 'parola_H8!');
 
 INSERT INTO playlist (id_creator, denumire, nr_melodii, durata, nr_streamuri)
 VALUES ((SELECT id_utilizator FROM utilizator WHERE email='alex.popescu@demo.ro'), 'Morning Boost', 12, 2600, 180000);

@@ -67,9 +67,9 @@ CREATE TABLE gen_album (
 
 CREATE TABLE abonament (
   id_abonament NUMBER GENERATED ALWAYS AS IDENTITY,
-  data_incepere DATE DEFAULT SYSDATE,
-  data_innoire DATE DEFAULT SYSDATE,
-  status VARCHAR2(16) CHECK (status IN ('activ', 'suspendat', 'neplatit')),
+  data_start DATE DEFAULT SYSDATE,
+  data_stop DATE DEFAULT NULL,
+  status VARCHAR2(16) CHECK (status IN ('activ', 'inactiv')),
   CONSTRAINT pk_abonament PRIMARY KEY (id_abonament)
 );
 
@@ -80,12 +80,17 @@ CREATE TABLE utilizator (
   data_inregistrare DATE DEFAULT SYSDATE,
   email VARCHAR2(64) UNIQUE NOT NULL,
   parola VARCHAR2(128) UNIQUE,
-  id_melodie_ascultata NUMBER,
-  id_abonament NUMBER NOT NULL,
-  CONSTRAINT pk_utilizator PRIMARY KEY (id_utilizator),
-  CONSTRAINT fk_utilizator_melodie_ascultata FOREIGN KEY (id_melodie_ascultata)
-    REFERENCES melodie(id_melodie),
-  CONSTRAINT fk_utilizator_abonament FOREIGN KEY (id_abonament)
+  CONSTRAINT pk_utilizator PRIMARY KEY (id_utilizator)
+);
+
+CREATE TABLE utilizator_abonament (
+  id_utilizator_abonament NUMBER GENERATED ALWAYS AS IDENTITY,
+  id_detinator_abonament NUMBER NOT NULL,
+  id_abonament_detinut NUMBER NOT NULL,
+  CONSTRAINT pk_utilizatr_playlist PRIMARY KEY (id_utilizator_abonament),
+  CONSTRAINT fk_detinator FOREIGN KEY (id_detinator_abonament)
+    REFERENCES utilizator(id_utilizator),
+  CONSTRAINT fk_abonament_detinut FOREIGN KEY (id_abonament_detinut)
     REFERENCES abonament(id_abonament)
 );
 

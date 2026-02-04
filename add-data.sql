@@ -138,54 +138,6 @@ VALUES ((SELECT id_utilizator FROM utilizator WHERE email='sorin.matei@demo.ro')
 INSERT INTO playlist (id_creator, denumire, nr_melodii, durata, nr_streamuri)
 VALUES ((SELECT id_utilizator FROM utilizator WHERE email='luna.enache@demo.ro'), 'Top 2025', 20, 4200, 310000);
 
-INSERT INTO album_artist (id_artist, id_album, artist_principal)
-VALUES ((SELECT id_artist FROM artist WHERE nume='Andrei Nova'),
-        (SELECT id_album FROM album WHERE nume='Neon Nights'), 1);
-
-INSERT INTO album_artist (id_artist, id_album, artist_principal)
-VALUES ((SELECT id_artist FROM artist WHERE nume='Mara Vibes'),
-        (SELECT id_album FROM album WHERE nume='Midnight Drive'), 1);
-
-INSERT INTO album_artist (id_artist, id_album, artist_principal)
-VALUES ((SELECT id_artist FROM artist WHERE nume='Kira Pulse'),
-        (SELECT id_album FROM album WHERE nume='Ocean Lines'), 1);
-
-INSERT INTO album_artist (id_artist, id_album, artist_principal)
-VALUES ((SELECT id_artist FROM artist WHERE nume='Radu Echo'),
-        (SELECT id_album FROM album WHERE nume='City Lights'), 1);
-
-INSERT INTO album_artist (id_artist, id_album, artist_principal)
-VALUES ((SELECT id_artist FROM artist WHERE nume='Luna Grey'),
-        (SELECT id_album FROM album WHERE nume='Dark Bloom'), 1);
-
-INSERT INTO album_artist (id_artist, id_album, artist_principal)
-VALUES ((SELECT id_artist FROM artist WHERE nume='Vlad Tempo'),
-        (SELECT id_album FROM album WHERE nume='Pulse Theory'), 1);
-
-INSERT INTO album_artist (id_artist, id_album, artist_principal)
-VALUES ((SELECT id_artist FROM artist WHERE nume='Daria Bloom'),
-        (SELECT id_album FROM album WHERE nume='Golden Hour'), 1);
-
-INSERT INTO album_artist (id_artist, id_album, artist_principal)
-VALUES ((SELECT id_artist FROM artist WHERE nume='Sorin Drift'),
-        (SELECT id_album FROM album WHERE nume='Afterglow'), 1);
-
-INSERT INTO album_artist (id_artist, id_album, artist_principal)
-VALUES ((SELECT id_artist FROM artist WHERE nume='Mara Vibes'),
-        (SELECT id_album FROM album WHERE nume='Neon Nights'), 0);
-
-INSERT INTO album_artist (id_artist, id_album, artist_principal)
-VALUES ((SELECT id_artist FROM artist WHERE nume='Radu Echo'),
-        (SELECT id_album FROM album WHERE nume='Midnight Drive'), 0);
-
-INSERT INTO album_artist (id_artist, id_album, artist_principal)
-VALUES ((SELECT id_artist FROM artist WHERE nume='Vlad Tempo'),
-        (SELECT id_album FROM album WHERE nume='City Lights'), 0);
-
-INSERT INTO album_artist (id_artist, id_album, artist_principal)
-VALUES ((SELECT id_artist FROM artist WHERE nume='Andrei Nova'),
-        (SELECT id_album FROM album WHERE nume='Golden Hour'), 0);
-
 INSERT INTO melodie_artist (id_melodie, id_artist, artist_principal)
 VALUES ((SELECT id_melodie FROM melodie WHERE nume='Neon Heart'),
         (SELECT id_artist FROM artist WHERE nume='Andrei Nova'), 1);

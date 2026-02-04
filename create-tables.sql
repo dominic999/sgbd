@@ -17,21 +17,6 @@ CREATE TABLE album (
   CONSTRAINT pk_album PRIMARY KEY (id_album)
 );
 
-CREATE TABLE album_artist (
-  id_album_artist NUMBER GENERATED ALWAYS AS IDENTITY,
-  id_artist NUMBER NOT NULL,
-  id_album NUMBER NOT NULL,
-  artist_principal NUMBER(1) NOT NULL
-    CONSTRAINT chk_album_artist_principal CHECK (artist_principal IN (0,1)),
-  CONSTRAINT pk_album_artist PRIMARY KEY (id_album_artist),
-  CONSTRAINT fk_album_artist_album FOREIGN KEY (id_album)
-    REFERENCES album(id_album)
-    ON DELETE CASCADE,
-  CONSTRAINT fk_album_artist_artist FOREIGN KEY (id_artist)
-    REFERENCES artist(id_artist)
-    ON DELETE CASCADE
-);
-
 CREATE TABLE melodie (
   id_melodie NUMBER GENERATED ALWAYS AS IDENTITY,
   id_album NUMBER,
